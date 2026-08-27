@@ -1,0 +1,6 @@
+{
+  "name": "Salat Guide — Step by Step",
+  "description": "A clean, authentic Islamic guide teaching 5 daily prayers (Salat/Namaz) step by step in Hinglish, Hindi, and Urdu with Arabic recitations and meanings.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
