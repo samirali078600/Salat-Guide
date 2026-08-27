@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bgGrad512" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#064E3B" />
+      <stop offset="100%" stop-color="#022c22" />
+    </linearGradient>
+    <linearGradient id="goldGrad512" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FDE68A" />
+      <stop offset="50%" stop-color="#F59E0B" />
+      <stop offset="100%" stop-color="#D97706" />
+    </linearGradient>
+    <filter id="shadow512" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000" flood-opacity="0.35" />
+    </filter>
+  </defs>
+
+  <!-- Background for maskable or standalone app -->
+  <rect width="512" height="512" rx="110" fill="url(#bgGrad512)" />
+
+  <!-- Outer ornamental border ring -->
+  <circle cx="256" cy="256" r="215" stroke="url(#goldGrad512)" stroke-width="4" stroke-dasharray="14 10" opacity="0.35" />
+
+  <!-- Sacred Mihrab Arch Silhouette -->
+  <path d="M 140 384 L 140 230 C 140 165 192 118 256 86 C 320 118 372 165 372 230 L 372 384 Z"
+        fill="none"
+        stroke="url(#goldGrad512)"
+        stroke-width="12"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        filter="url(#shadow512)" />
+
+  <!-- Inner delicate Arch -->
+  <path d="M 172 384 L 172 245 C 172 195 214 154 256 128 C 298 154 340 195 340 245 L 340 384"
+        fill="none"
+        stroke="#FDE68A"
+        stroke-width="5"
+        opacity="0.6" />
+
+  <!-- Crescent Moon (Hilal) -->
+  <path d="M 272 190 C 245 190 224 212 224 240 C 224 268 245 290 272 290 C 280 290 287 287.5 294 284 C 271 300 239 293 230 268 C 221 245 235 218 258 210 C 263 209 268 209 272 210 Z"
+        fill="url(#goldGrad512)"
+        filter="url(#shadow512)" />
+
+  <!-- Five-pointed Star (Noor) -->
+  <polygon points="296,180 304,198 322,198 308,212 313,230 296,218 279,230 284,212 270,198 288,198"
+           fill="#FEF08A"
+           filter="url(#shadow512)" />
+
+  <!-- Baseline Shelf -->
+  <line x1="112" y1="384" x2="400" y2="384" stroke="url(#goldGrad512)" stroke-width="10" stroke-linecap="round" />
+
+  <!-- Minaret Tip Dome -->
+  <circle cx="256" cy="74" r="12" fill="url(#goldGrad512)" />
+</svg>

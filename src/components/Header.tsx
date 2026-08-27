@@ -1,4 +1,5 @@
 import React from 'react';
+import { SlidersHorizontal, Download } from 'lucide-react';
 import { Language } from '../types';
 import { Logo } from './Logo';
 
@@ -6,12 +7,14 @@ interface HeaderProps {
   currentLanguage: Language;
   onLanguageChange: (lang: Language) => void;
   onHomeClick?: () => void;
+  onOpenSettings?: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
   currentLanguage,
   onLanguageChange,
-  onHomeClick
+  onHomeClick,
+  onOpenSettings
 }) => {
   const titles: Record<Language, string> = {
     hinglish: "Salat Guide",
@@ -29,8 +32,8 @@ export const Header: React.FC<HeaderProps> = ({
 
   return (
     <header id="main-header" className="bg-[#FAF9F5] border-b border-emerald-900/10 sticky top-0 z-30 backdrop-blur-md bg-opacity-95">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 py-3.5">
-        <div className={`flex flex-col sm:flex-row items-center justify-between gap-4 ${isRtl ? 'sm:flex-row-reverse' : ''}`}>
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 py-3">
+        <div className={`flex flex-col sm:flex-row items-center justify-between gap-3 ${isRtl ? 'sm:flex-row-reverse' : ''}`}>
           {/* Brand / Title with Custom Vector Logo */}
           <div 
             id="brand-section"
@@ -45,7 +48,7 @@ export const Header: React.FC<HeaderProps> = ({
                     {titles[currentLanguage]}
                   </h1>
                   <span className="hidden xs:inline-block text-[10px] font-bold uppercase tracking-wider bg-emerald-100 text-emerald-900 px-2 py-0.5 rounded-md border border-emerald-300/60">
-                    Step by Step
+                    App
                   </span>
                 </div>
                 <p className={`text-xs sm:text-sm text-stone-600 mt-0.5 font-medium ${isRtl ? 'font-urdu text-sm' : ''}`}>
@@ -55,50 +58,64 @@ export const Header: React.FC<HeaderProps> = ({
             </div>
           </div>
 
-          {/* Language Selector */}
-          <div id="language-selector-wrapper" className="flex items-center gap-1.5 bg-stone-200/70 p-1 rounded-xl border border-stone-300/60">
-            <span className="text-[11px] font-semibold text-stone-500 uppercase tracking-wider px-2 hidden md:inline">
-              Language:
-            </span>
-            <button
-              id="lang-btn-hinglish"
-              type="button"
-              onClick={() => onLanguageChange('hinglish')}
-              className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all duration-150 ${
-                currentLanguage === 'hinglish'
-                  ? 'bg-emerald-800 text-white shadow-xs'
-                  : 'text-stone-700 hover:text-emerald-900 hover:bg-stone-300/50'
-              }`}
-            >
-              Hinglish
-            </button>
-            <button
-              id="lang-btn-hindi"
-              type="button"
-              onClick={() => onLanguageChange('hindi')}
-              className={`px-3 py-1.5 rounded-lg text-xs font-semibold font-hindi transition-all duration-150 ${
-                currentLanguage === 'hindi'
-                  ? 'bg-emerald-800 text-white shadow-xs'
-                  : 'text-stone-700 hover:text-emerald-900 hover:bg-stone-300/50'
-              }`}
-            >
-              हिन्दी (Hindi)
-            </button>
-            <button
-              id="lang-btn-urdu"
-              type="button"
-              onClick={() => onLanguageChange('urdu')}
-              className={`px-3 py-1.5 rounded-lg text-xs font-semibold font-urdu transition-all duration-150 ${
-                currentLanguage === 'urdu'
-                  ? 'bg-emerald-800 text-white shadow-xs'
-                  : 'text-stone-700 hover:text-emerald-900 hover:bg-stone-300/50'
-              }`}
-            >
-              اردو (Urdu)
-            </button>
+          {/* Right Controls: Language Selector & Settings/Tools */}
+          <div className="flex items-center gap-2 flex-wrap justify-center">
+            {/* Language Selector */}
+            <div id="language-selector-wrapper" className="flex items-center gap-1 bg-stone-200/70 p-1 rounded-xl border border-stone-300/60">
+              <button
+                id="lang-btn-hinglish"
+                type="button"
+                onClick={() => onLanguageChange('hinglish')}
+                className={`px-2.5 py-1.5 rounded-lg text-xs font-semibold transition-all duration-150 cursor-pointer ${
+                  currentLanguage === 'hinglish'
+                    ? 'bg-emerald-800 text-white shadow-xs'
+                    : 'text-stone-700 hover:text-emerald-900 hover:bg-stone-300/50'
+                }`}
+              >
+                Hinglish
+              </button>
+              <button
+                id="lang-btn-hindi"
+                type="button"
+                onClick={() => onLanguageChange('hindi')}
+                className={`px-2.5 py-1.5 rounded-lg text-xs font-semibold font-hindi transition-all duration-150 cursor-pointer ${
+                  currentLanguage === 'hindi'
+                    ? 'bg-emerald-800 text-white shadow-xs'
+                    : 'text-stone-700 hover:text-emerald-900 hover:bg-stone-300/50'
+                }`}
+              >
+                हिन्दी
+              </button>
+              <button
+                id="lang-btn-urdu"
+                type="button"
+                onClick={() => onLanguageChange('urdu')}
+                className={`px-2.5 py-1.5 rounded-lg text-xs font-semibold font-urdu transition-all duration-150 cursor-pointer ${
+                  currentLanguage === 'urdu'
+                    ? 'bg-emerald-800 text-white shadow-xs'
+                    : 'text-stone-700 hover:text-emerald-900 hover:bg-stone-300/50'
+                }`}
+              >
+                اردو
+              </button>
+            </div>
+
+            {/* App Settings / Tools Trigger Button */}
+            {onOpenSettings && (
+              <button
+                onClick={onOpenSettings}
+                className="p-2 bg-stone-200/70 hover:bg-emerald-800 hover:text-white text-stone-700 rounded-xl border border-stone-300/60 transition-colors shadow-2xs cursor-pointer flex items-center gap-1.5 text-xs font-semibold"
+                title="App Settings, Tools & Install"
+                aria-label="Settings"
+              >
+                <SlidersHorizontal className="w-4 h-4" />
+                <span className="hidden sm:inline">Tools</span>
+              </button>
+            )}
           </div>
         </div>
       </div>
     </header>
   );
 };
+
